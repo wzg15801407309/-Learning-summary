@@ -25,3 +25,14 @@ a.addEventListener("click", function (event) {
 a.addEventListener("click", function (event) {
   console.log("a4");
 }, true);
+// var name = 'bnc';
+// (
+//   function () {
+//     if (typeof name == 'undefined') {
+//       console.log('undefined');
+//     } else {
+//       console.log(name);
+//     }
+//   }
+// )()
+
