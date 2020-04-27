@@ -35,4 +35,12 @@ a.addEventListener("click", function (event) {
 //     }
 //   }
 // )()
-
+var name = 'goudan';
+(function () {
+  if (name === 'goudan') {
+    var name = 'dachui';
+    console.log('bye' + name)
+  } else {
+    console.log(name)
+  }
+})()
