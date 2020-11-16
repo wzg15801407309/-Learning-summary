@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学习汇总 Learning summary</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style>
+      .box {
+        height: 200px;
+        width: 300px;
+      }
+      .black {
+        background-color: black;
+      }
+      .gray {
+        background-color: gray;
+      }
+      .greenyellow {
+        background-color: greenyellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="a" class="box black"></div>
+    <div id="b" class="box black" style="margin-top: 20px"></div>
+  </body>
+  <script>
+    // 两个类之间的切换
+    $("#a").click(function () {
+      $("#a").toggleClass("black gray");
+    });
+
+    $("#b").click(function () {
+      console.log(this.classname);
+    });
+  </script>
+</html>
