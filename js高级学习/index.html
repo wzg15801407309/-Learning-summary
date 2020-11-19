@@ -7,5 +7,21 @@
   </head>
   <body>
     <script src="./5-3.js"></script>
+    <script>
+      function cratePerson(name, age) {
+        var obj = {
+          name: name,
+          age: age,
+          setname: (name) => {
+            // 因为是箭头函数  所以这里的this是window
+            console.log(this, "*******");
+            this.name = name;
+          },
+        };
+        return obj;
+      }
+      var p = cratePerson("wzg", "28");
+      p.setname("测试尖头函数的this");
+    </script>
   </body>
 </html>

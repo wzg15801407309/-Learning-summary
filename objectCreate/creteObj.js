@@ -138,3 +138,77 @@ var a2 = new Animal("c");
 a1.friends.push("snake");
 console.log(a1.friends); //[dog,cat,snake]
 console.log(a2.friends); //[dog,cat]
+
+/**  2020-11-19 学习创建对象的方法 */
+// 构造函数方式创建对象
+var wzgobj = new Object();
+wzgobj.name = 'wzg';
+wzgobj.age = '28';
+wzgobj.setname = function (name) {
+  this.name = name;
+  console.log(this.name);
+}
+// 使用场景：开始确定内部的数据 我们可以使用
+//  不好的方法就是语句太多
+// 解决上面的方法  使用字面量的方式
+var wzgobj1 = {
+  name: 'wzg',
+  age: '28',
+  setname: function (name) {
+    this.name = name;
+  }
+}
+// 使用场景就是创建时被创建的属性方法时被确定的。 平时的使用中发现使用比较多的地方是：在调用接口的时候传入参数的组合。
+// 问题：当我们想要创建多个具有相同属性的对象的时，重复的代码比较多。解决办法就是：
+//工厂模式：使用工厂函数，动态的创建对象
+function cratePerson(name, age) {
+  var obj = {
+    name: name,
+    age: age,
+    // 这里不能这样写 原因是箭头函数的指向问题
+    // setname: (name) => {
+    //   console.log(this, '*******')
+    //   this.name = name
+    // }
+    setname: function (name) {
+      this.name = name;
+    }
+  }
+  return obj;
+}
+var p = cratePerson('wzg', '28');
+// 问题：这样创建的对象都是object类型 没有办法区分。
+// 解决办法：自定义构造函数类型
+// 定义类型
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.setname = function (name) {
+    this.name = name;
+  }
+}
+// 创建对象
+var p3 = new Person('wzg', 28);
+var p4 = new Person('wzg', 28);
+function Student(name, age) {
+  this.name = name;
+  this.age = age;
+  this.setname = function (name) {
+    this.name = name;
+  }
+}
+var p5 = new Student('wzg', 28);
+// 问题所在：p3\p4和p5虽然区分了类型，但是 创建p3和p4他们具有哟个共同的方法setname，这样就浪费了内存
+// 解决办法：使用构造函数+原型的方法创建
+function PersonA(name, age) {
+  this.name = name;
+  this.age = age;
+
+}
+// 把方法放在了原型 __proto__ 上
+PersonA.prototype.setname = function (name) {
+  this.name = name;
+}
+
+var p6 = new PersonA('wzg', 28);
+var p7 = new PersonA('wzg', 28);
