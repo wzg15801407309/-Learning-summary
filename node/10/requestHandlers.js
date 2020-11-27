@@ -22,7 +22,6 @@ function start(response) {
 function upload(response, resquest) {
   var form = new formidable.IncomingForm();
   form.parse(resquest, function (error, fields, files) {
-    console.log('parsing done');
     fs.renameSync(files.upload.path, '/Users/zhuqin.wei/Documents/webGitHubProject/notebooks/node/9/tmp/timg.jpeg');
     response.writeHead(200, { "Content-Type": "text/html" });
     response.write('received image:<br/>');
