@@ -3,10 +3,10 @@
  */
 let http = require('http');
 let url = require('url');
-function start(routte, handle) {
+function start(route, handle) {
   function onResquest(resquest, response) {
     var pathname = url.parse(resquest.url).pathname;
-    routte(handle, pathname, response, resquest);
+    route(handle, pathname, response, resquest);
 
   }
   http.createServer(onResquest).listen(8888);

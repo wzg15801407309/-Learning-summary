@@ -1,0 +1,1 @@
+console.log('我是b.js，哈哈哈哈');
