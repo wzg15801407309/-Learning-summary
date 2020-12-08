@@ -1,5 +1,6 @@
 var querystring = require('querystring');
 var fs = require('fs');
+// 运行前请去node去下载formidable
 var formidable = require('formidable');
 function start(response) {
   var body = '<html>' +
