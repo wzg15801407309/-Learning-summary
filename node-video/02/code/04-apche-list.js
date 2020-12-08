@@ -12,6 +12,7 @@ server.on('request', function (req, res) {
       return res.end('404 Not Found.');
     }
 
+
     // 读取文件，目录
     fs.readdir(wwwUrl, function (err, files) {
       if (err) {
