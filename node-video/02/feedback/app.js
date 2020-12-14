@@ -1,6 +1,14 @@
 var http = require('http');
 var fs = require('fs');
-
+var artTemplate=require('art-template');
+var comments=[
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+  {name:'姓名',message:'留言板的留言数据',dateTime:'2020-12-14'},
+]
 http.createServer(function (req,res){
   var url = req.url;
   if(url == '/' ){
@@ -8,7 +16,10 @@ http.createServer(function (req,res){
       if(err){
         return res.end('404 Not Found.');
       };
-      res.end(data);
+      var htmlData=artTemplate.render(data.toString(),{
+        comments:comments
+      });
+      res.end(htmlData);
     });
   }else if(url == '/post'){
     fs.readFile('./views/post.html',function(err,data) {
