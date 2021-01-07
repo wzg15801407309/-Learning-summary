@@ -1,10 +1,11 @@
 const express = require('express');
+const studentsDbs = require('./db');
 const fileOperations = require('./fileoperations');
 
 const router = express.Router();
-
+// 查找所有的数据
 router.get('/',(req,res)=>{
-  fileOperations.find((err,students)=>{
+  studentsDbs.find((err,students)=>{
     if(err){
       return res.status(500).send(" Server error.");
     }
@@ -13,20 +14,21 @@ router.get('/',(req,res)=>{
     });
   });
 });
+
 router.get('/add',(req,res)=>{
   res.render('add.html');
 });
 router.post('/add',(req,res)=>{
-  fileOperations.add(req.body,function(err){
+  new studentsDbs(req.body).save(err => {
     if(err){
       return res.status(500).send(" Server add error.");
     }
     res.redirect('/');
-  })
-
+  });
 });
+
 router.get('/edit',(req,res)=>{
-  fileOperations.findById(parseInt(req.query.id),(err,students)=>{
+  studentsDbs.findById(req.query.id,(err,students)=>{
     if(err) return res.status(500).send(" Server error.");
     res.render('edit.html',{
       students:students
@@ -34,16 +36,16 @@ router.get('/edit',(req,res)=>{
   });
 });
 router.post('/edit',(req,res)=>{
-  fileOperations.update(req.body,function(err){
+  studentsDbs.findByIdAndUpdate(req.body.id,req.body,err => {
     if(err){
       return res.status(500).send(" Server add error.");
     }
     res.redirect('/');
-  })
+  });
 });
 
 router.get('/delete',(req,res)=>{
-  fileOperations.delete(parseInt(req.query.id),(err)=>{
+  studentsDbs.findOneAndRemove(req.query.id,(err)=>{
     if(err) return res.status(500).send(" Server error.");
     res.redirect('/');
   });
