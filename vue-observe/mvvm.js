@@ -29,7 +29,7 @@ function observe(data){
                     return
                 }
                 val=newvalue;
-                Observe(data);
+                Observe(val);
             }
         });
     }
