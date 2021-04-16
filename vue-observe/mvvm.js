@@ -19,8 +19,22 @@ function WZG(option){
             }
         })
     };
+    // 实现 computed  
+    initComuted.call(this);
     // 编译模版
     new Compile(option.el,this);
+
+};
+function initComuted(){
+    let vm = this;
+    let computed = this.$options.computed;
+    Object.keys(computed).forEach(function(key){
+        Object.defineProperty(vm,key,{
+            get: typeof computed[key] == 'function'?computed[key] : computed[key].get,
+            set()
+        });
+        console.log(key);
+    });
 };
 // 数据劫持 实现方法
 function observe(data){
@@ -65,6 +79,7 @@ function Compile(el,vm){
         Array.from(fragment.childNodes).forEach(function(node){
             let text=node.textContent;
             let reg=/\{\{(.*)\}\}/;
+            // 知道 3为文本
             if(node.nodeType === 3 && reg.test(text)){
                 let arrays = RegExp.$1.split('.');
                 let  val = vm;
@@ -75,6 +90,26 @@ function Compile(el,vm){
                     node.textContent = text.replace(reg,newval);
                 });
                 node.textContent = text.replace(reg,val);
+            }
+            // 知道 1为 属性？ 实现的是数据的双向绑定
+            if(node.nodeType === 1){
+                let nodeAttrs = node.attributes; // 获取当前dom节点的所有属性
+                Array.from(nodeAttrs).forEach(function(attr){
+                        let name = attr.name;
+                        let exp  = attr.value;
+                        if(name.indexOf("v-") == 0 ){
+                            node.value = vm[exp];
+                        }
+                        new Watcher(vm,exp,function(newvalue){
+                            node.value = newvalue
+                        });
+                        // 监听input的时间
+                        node.addEventListener("input",function(e){
+                            let newvalue = e.target.value;
+                            vm[exp] = newvalue;
+                        })
+    
+                })
             }
             if(node.childNodes){
                 replace(node);
