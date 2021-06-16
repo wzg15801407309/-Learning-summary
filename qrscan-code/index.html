@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>自定义扫码</title>
+		<link rel="stylesheet" href="./css/common.css" type="text/css" charset="utf-8" />
+		<script type="text/javascript" src="./js/common.js"></script>
+		
+		<script type="text/javascript">
+			
+			//系统栏颜色
+			if(window.plus){
+    
+				plus.navigator.setStatusBarBackground("#009DE2");
+			}else{
+    
+				document.addEventListener("plusready",function(){
+    
+					plus.navigator.setStatusBarBackground("#009DE2");
+				},false);
+			}
+			
+			// 打开自定义扫描界面 
+			function openBarcodeCustom() {
+    
+				createWithoutTitle('test2.html', {
+    
+					titleNView: {
+    
+						type: 'float',
+						backgroundColor: '#009DE2',
+						titleText: '扫一扫',
+						titleColor: '#FFFFFF',
+						autoBackButton: true
+					}
+				});
+			}
+			
+			//扫描成功后回调
+			function scaned(t, r, f){
+    
+				alert("二维码类型："+t+"\n扫描结果："+r+"\n文件路径："+f);
+			}
+		</script>
+	
+	</head>
+	<body>
+		<div class="button" onclick="openBarcodeCustom()">扫一扫（自定义）</div>
+	</body>
+</html>
