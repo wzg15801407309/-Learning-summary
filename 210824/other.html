@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test1</title>
+    <style>
+      .container {
+        width: 600px;
+        height: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 30px;
+}
+
+.slider img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.slider ul.pic {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    margin: 0;
+}
+
+.slider .item {
+    position: absolute;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.slider .btn {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 150px;
+    font-size: 40px;
+    background: rgba(0,0,0,0.1);
+    border: 0;
+    outline: 0;
+    z-index: 100;
+}
+
+.slider .next {
+    right: 0;
+}
+
+.item.active {
+    z-index: 10;
+    opacity: 1;
+}
+
+.slider ul.pointlist {
+    list-style: none;
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    z-index: 100;
+}
+
+.point {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 100%;
+    float: left;
+    margin-left: 10px;
+    border: 1px solid white;
+}
+
+.point.active {
+    background: white;
+}
+
+    </style>
+</head>
+<body onload="RequestFullscreen()">
+  <div class="container">
+    <div class="slider">
+        <ul class="pic">
+            <li class="item active"><img src="./img/001.jpg"></li>
+            <li class="item"><img src="./img/002.jpg"></li>
+            <li class="item"><img src="./img/003.jpg"></li>
+        </ul>
+        <ul class="pointlist">
+            <li class="point active" data-index="0"></li>
+            <li class="point" data-index="1"></li>
+            <li class="point" data-index="2"></li>
+        </ul>
+        <button class="btn prev"><</button>
+        <button class="btn next">></button>
+    </div>
+</div>
+<script>
+function RequestFullscreen(){
+    document.documentElement.webkitRequestFullscreen();
+}
+let items = document.querySelectorAll('.item');//图片
+let points = document.querySelectorAll('.point');//圆点
+let btnPrev = document.querySelector('.prev');
+let btnNext = document.querySelector('.next');
+let time = 0;//定时器时间参数
+
+let index = 0;
+
+//清除图片和圆点的active类
+function clearActive() {
+    for (let i = 0; i < items.length; i++) {
+        items[i].className = 'item';
+        points[i].className = 'point';
+    }
+}
+
+//跳到索引页
+function goIndex() {
+    clearActive();
+    items[index].className = 'item active';
+    points[index].className = 'point active';
+}
+
+//跳到下一页
+function goNext() {
+    if (index < items.length - 1) {
+        index++;
+    } else {
+        index = 0;
+    }
+
+    goIndex();
+}
+
+//跳到上一页
+function goPrev() {
+    if (index == 0) {
+        index = items.length - 1;
+    } else {
+        index--;
+    }
+
+    goIndex();
+}
+
+//绑定next点击事件
+btnNext.addEventListener('click', function () {
+    goNext();
+    time = 0;
+});
+
+//绑定prev点击事件
+btnPrev.addEventListener('click', function () {
+    goPrev();
+    time = 0;
+});
+
+//点击圆点跳转到对应图片
+for (let i = 0; i < items.length; i++) {
+    points[i].addEventListener('click', function () {
+        let pointIndex = points[i].getAttribute('data-index');
+        index = pointIndex;
+        goIndex();
+        time = 0;
+    })
+}
+
+//自动轮播定时器
+setInterval(function () {
+    time++;
+    if (time == 30) {
+        goNext();
+        time = 0;
+    }
+}, 100);
+    console.log()
+</script>
+</body>
