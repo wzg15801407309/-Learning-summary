@@ -1,0 +1,1 @@
+// let name: string = '1234';
