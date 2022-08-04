@@ -1,3 +1,11 @@
+
+/**
+* 在"include" 用来指定那些ts文件需要翻译
+  路径：** 表示任意目录
+        *表示任意文件
+*/
+
+
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
