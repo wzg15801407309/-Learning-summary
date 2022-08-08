@@ -38,3 +38,5 @@ let c1:{name:string,[propName:string]:any}
 c1 = {name:"猪八戒",age:18,gende:'男'}
 // 希望d是一个有2个类型为number 参数 返回值为number 的函数 （利用尖头函数设置函数的结构）
 let d : (a:number,b:number) => number;
+
+// obj？ ==》 可以判断是否是空值
