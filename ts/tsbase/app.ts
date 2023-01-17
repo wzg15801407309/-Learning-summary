@@ -1,0 +1,1 @@
+console.log('测试tsconfig.json文件对当前项目下的ts文件的监控');
