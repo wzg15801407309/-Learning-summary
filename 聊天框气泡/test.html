@@ -1,0 +1,27 @@
+<!-- 帮同事解决问题 复选框只能选一个，可以取消选中 -->
+<html>
+    <body>
+    <p>Choose your vehicle:</p>
+    <div id="bank">
+      <input id = 'gdyh' type="checkbox" name="a" value="gdyh">光大银行
+      <input id = 'jsyh' type="checkbox" name="a" value="jsyh">建设银行
+      <input id = "gsyh" type="checkbox" name="a" value="gsyh">工商银行
+  </div>
+    </body>
+    <script>
+      var id = "";
+      var arr = document.getElementById("bank");
+      console.log(arr);
+      arr.addEventListener("click", function(e) {
+        if (e.target.tagName == "INPUT") {
+            if(id!=e.target.id){
+              if(id){
+                document.getElementById(id).checked = false;
+              }
+              id = e.target.id;
+              console.log("id不相等", e.target.id)
+            }
+        }
+    })
+    </script>
+</html>
