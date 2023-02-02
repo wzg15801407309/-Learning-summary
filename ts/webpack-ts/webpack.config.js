@@ -28,7 +28,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // template 定义了html 的模版  没有这个会默认创建一个
-      template: "./index.html"
+      template: "./src/index.html"
     })
   ]
 };
