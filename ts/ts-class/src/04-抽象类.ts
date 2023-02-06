@@ -1,14 +1,18 @@
 (function(){
-  class Animal{
+  /**
+   * abstract 抽象类
+   * 抽象类不能实例化对象  只能用来继承
+   * 抽象类中可以定义抽象类方法 且抽象方法只能在抽象类中定义 
+   * 【抽象方法没有具体的实现,且子类必须实现抽象类方法】
+   */
+   abstract class Animal{
     name:string;
     age:number;
     constructor(name:string,age:number){
       this.name = name;
       this.age = age;
     }
-    seyHello(){
-      console.log("动物叫声啊！");
-    }
+    abstract seyHello():void;
   }
   class Dog extends Animal{
     height:string;
