@@ -52,6 +52,7 @@
     /* JavaScript Support */
     // 是否允许对js进行编译 默认是false
     // "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    // 检查js文件的语法
     // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */
 
@@ -129,3 +130,4 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
 }
+// 当我们的代码中有import 导入模块  代码会自动的进入严格模式

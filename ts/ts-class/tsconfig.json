@@ -3,7 +3,12 @@
     "module": "es2015",
     "target": "es2015",
     "strict": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    // 指定浏览器要使用的库 一般不动
+    "lib": ["es6","DOM"]
   },
   "include": ["./src/**/*"]
 }
+// **  代表任意目录  * 代表任意目录  
+// include:包含
+//  compilerOptions 编译器选项
