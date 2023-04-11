@@ -26,7 +26,7 @@
     get name (){
       return this._name;
     }
-    set name(val:nu){
+    set name(val:string){
         this._name = val;
     }
     get age(){
