@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "module": "ES2015",
@@ -7,4 +6,3 @@
     "noEmitOnError": true
   }
 }
-
