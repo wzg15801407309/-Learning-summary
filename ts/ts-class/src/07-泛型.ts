@@ -1,3 +1,5 @@
+import { clearScreenDown } from "readline"
+
 function fn<T>(a:T):T{
   return a
 }
@@ -11,3 +13,12 @@ function fn2<T extends Inter>(a:T):T{
   console.log(a);
 }
 fn2("130cm");
+class Myname<T>{
+  name:T;
+  constructor(name:T){
+    this.name=name
+  }
+}
+
+const myname = new Myname<string>("test");
+console.log(myname);
