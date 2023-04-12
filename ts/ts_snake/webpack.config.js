@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { version } = require('os');
 module.exports = {
   // 指定入孔文件
   entry: "./src/index.ts",
@@ -21,6 +22,31 @@ module.exports = {
         use: 'ts-loader',
         // 要排除的文件
         exclude: /node-modules/
+      },
+      // less 文件的处理 less-loader ==》css-loader ==> stylw-loader
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          // 引入postcss
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      browsers: 'last 3 versions'
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "less-loader",
+        ]
       }
     ]
   },
