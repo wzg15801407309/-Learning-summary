@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { version } = require('os');
 module.exports = {
   // 指定入孔文件
   entry: "./src/index.ts",
+  devServer: {
+    static: './dist',
+  },
   // 指定打包文件的所在目录
   output: {
     // 指定打包文件路径目录
@@ -12,6 +14,9 @@ module.exports = {
     // 打包后文件的文件
     filename: "bundle.js"
   },
+  // optimization: {
+  //   runtimeChunk: 'single',
+  // },
   module: {
     // 指定加载的规则
     rules: [
@@ -56,5 +61,6 @@ module.exports = {
       // template 定义了html 的模版  没有这个会默认创建一个
       template: "./src/index.html"
     })
-  ]
+  ],
+  mode: 'development'
 };
