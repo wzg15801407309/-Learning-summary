@@ -14,9 +14,6 @@ module.exports = {
     // 打包后文件的文件
     filename: "bundle.js"
   },
-  // optimization: {
-  //   runtimeChunk: 'single',
-  // },
   module: {
     // 指定加载的规则
     rules: [
