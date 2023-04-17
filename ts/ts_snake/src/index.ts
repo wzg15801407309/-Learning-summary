@@ -1,6 +1,6 @@
 
-import "./style/index.less"
-let test:number
-test=2;
+import "./style/index.less";
+import Food from "./moudls/Food";
 
-const a = 2;
+const food = new Food();
+console.log(food.X);

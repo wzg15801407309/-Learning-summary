@@ -7,6 +7,10 @@ module.exports = {
   devServer: {
     static: './dist',
   },
+  // 文件做为moudle的时候导入
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
   // 指定打包文件的所在目录
   output: {
     // 指定打包文件路径目录
