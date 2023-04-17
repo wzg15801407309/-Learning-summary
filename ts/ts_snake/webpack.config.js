@@ -12,7 +12,11 @@ module.exports = {
     // 指定打包文件路径目录
     path: path.resolve(__dirname, 'dist'),
     // 打包后文件的文件
-    filename: "bundle.js"
+    filename: "bundle.js",
+    environment: {
+      arrowFunction: false,
+      const: false
+    }
   },
   module: {
     // 指定加载的规则
