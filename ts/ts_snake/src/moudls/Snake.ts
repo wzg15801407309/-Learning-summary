@@ -1,3 +1,5 @@
+import { error } from "console";
+
 class Snake{
   //表示蛇头元素
   head:HTMLElement;
@@ -18,9 +20,21 @@ class Snake{
     return this.head.offsetTop;
   }
   set X(value:number){
+    if(this.X === value){
+      return;
+    }
+    if(value<0 || value >290){
+      throw new Error("蛇撞墙了！");
+    }
      this.head.style.left = value+"px";
   }
   set Y(value:number){
+    if(this.Y === value){
+      return;
+    }
+    if(value<0 || value >290){
+      throw new Error("蛇撞墙了！");
+    }
     this.head.style.top = value+"px";
   }
   addBody(){

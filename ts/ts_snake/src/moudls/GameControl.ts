@@ -2,7 +2,6 @@
 import Snake from "./Snake";
 import Food from "./Food";
 import ScorePanel from "./ScorePanel";
-import { log } from "console";
 
 class GameControl{
   snake:Snake;
@@ -10,6 +9,8 @@ class GameControl{
   scorepanel:ScorePanel;
   // 按键的方向
   direction:string = '';
+  // 记录游戏是否结束
+  isLive = true;
   constructor(){
     this.snake = new Snake();
     this.food = new Food();
@@ -49,9 +50,26 @@ class GameControl{
         X += 10;
         break;
     }
-    this.snake.Y = Y;
-    this.snake.X = X;
-    setTimeout(this.run.bind(this), 300);
+    this.checkEat(X,Y);
+    try{
+      this.snake.Y = Y;
+      this.snake.X = X;
+    }catch(e:any){
+      alert(e.message+"GAME OVER!");
+      this.isLive = false;
+    }
+
+
+    this.isLive&&setTimeout(this.run.bind(this), 300-(this.scorepanel.level-1)*30);
+  };
+  // 检查是否吃到食物
+  checkEat(x:number,y:number){
+    console.log("吃到了食物！");
+    if( x === this.food.X && y ===  this.food.Y){
+      this.food.change();
+      this.scorepanel.addScore();
+      this.snake.addBody();
+    }
   }
 }
 
